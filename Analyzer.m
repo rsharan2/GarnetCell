@@ -27,7 +27,7 @@ for i = 1:size(filenames,2)
     %check if it is a tif image with is not a mask
     filename = filenames{i};
     [~,name,ext] = fileparts(filename); 
-    if(strcmp(ext,'.tif') && ~strcmp(title(1:4),'mask'))
+    if(strcmp(ext,'.tif') && ~strcmp(name(1:4),'mask'))
         
         disp(strcat("Anayzing... ",name));
         
@@ -37,14 +37,14 @@ for i = 1:size(filenames,2)
         R = makeregions(M,1,3,voxel);
         
         %create new result table
-        result = brightness(I,M,1,name);
+        result = sphericity(M,voxel,name);
         
         %add analyses here
-        result = [result,brightness(I,M,2,name)];
-        result = [result,pearson(I,M,R,1,3,name)];
-        result = [result,distribution(I,M,R,1,95,voxel,name)];
-        result = [result,distribution(I,M,R,2,95,voxel,name)];
-        result = [result,manders(I,M,R,1,3,95,95,voxel,name)];
+        %result = [result,brightness(I,M,2,name)];
+        %result = [result,pearson(I,M,R,1,3,name)];
+        result = [result,distribution(I,M,R,3,95,voxel,name)];
+        %result = [result,distribution(I,M,R,2,95,voxel,name)];
+        %result = [result,manders(I,M,R,1,3,95,95,voxel,name)];
         
         %add the result to the sheet
         if isempty(sheet)
