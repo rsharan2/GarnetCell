@@ -13,12 +13,12 @@ outside = zeros(size(M));
 
 %set the edges to 1
 [x,y,z] = size(outside);
-outside(1,:,:) = 1;
-outside(:,1,:) = 1;
-outside(:,:,1) = 1;
-outside(x,:,:) = 1;
-outside(:,y,:) = 1;
-outside(:,:,z) = 1;
+outside(1,:,:) = 0;
+outside(:,1,:) = 0;
+outside(:,:,1) = 0;
+outside(x,:,:) = 0;
+outside(:,y,:) = 0;
+outside(:,:,z) = 0;
 
 if(sigma > 0)
 C = imgaussfilt3(C,[sigma,sigma,1]); %apply gaussian filter
@@ -26,6 +26,7 @@ end
 R = inside + outside; %set R to inside and outside
 R = imimposemin(C,R); %make R local minimum for watershed
 L = watershed(R); %watershed
+%imshow(L(:,:,30).*100);
 i = L(round(x/2),round(y/2),round(z/2)); %find value at center
 M = double(L==i); %return L equal to value
 
