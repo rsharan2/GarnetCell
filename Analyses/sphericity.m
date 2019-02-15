@@ -7,7 +7,7 @@ function result = sphericity(M,voxel,name)
 %Date: 2/14/17
 %Contact: colgan.william@gmail.com
 
-%get 
+%get volume
 volume = imVolume(M,voxel);
 
 %get suface area
