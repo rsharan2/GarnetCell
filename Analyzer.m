@@ -34,15 +34,15 @@ for i = 1:size(filenames,2)
         %get mask and regions
         [I,voxel] = loadimage(filename);
         M = loadmask(strcat('mask_',filename));
-        R = makeregions(M,1,3,voxel);
+        %R = makeregions(M,1,3,voxel);
         
         %create new result table
-        result = sphericity(M,voxel,name);
+        result = manders(I,M,2,3,95,95,voxel,name);
         
         %add analyses here
-        %result = [result,brightness(I,M,2,name)];
-        %result = [result,pearson(I,M,R,1,3,name)];
-        result = [result,distribution(I,M,R,3,95,voxel,name)];
+        result = [result,manders(I,M,3,2,95,95,voxel,name)];
+        result = [result,pearson(I,M,2,3,name)];
+        %result = [result,distribution(I,M,R,3,95,voxel,name)];
         %result = [result,distribution(I,M,R,2,95,voxel,name)];
         %result = [result,manders(I,M,R,1,3,95,95,voxel,name)];
         

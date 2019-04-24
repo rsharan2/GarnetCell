@@ -1,8 +1,8 @@
-function result = manders(I,M,R,channel1,channel2,percentile1,percentile2,voxel,name)
+function result = manders(I,M,channel1,channel2,percentile1,percentile2,voxel,name)
 %This function quantifies the distribuiton of a particular channel, after
 % thresholding at the specified precentile.
 %
-%   result = manders(I,M,R,channel1,channel2,percentile1,percentile2,voxel,name)
+%   result = manders(I,M,channel1,channel2,percentile1,percentile2,voxel,name)
 %
 %Author: William Molgan
 %Date: 2/14/17
@@ -30,17 +30,4 @@ overlap = sum(sum(sum(O.*M)))/sum(sum(sum(C1.*M)));
 analysis = strcat('whole_c',int2str(channel1),'_overlap_c',int2str(channel2));
 result = table(overlap,'VariableNames',{analysis},'RowNames',{name});
 
-
-%Analyze each region
-for i = 1:size(R,2)
-    RI = R{i};
-    
-    %calculate the overlap
-    overlap = sum(sum(sum(O.*RI)))/sum(sum(sum(C1.*RI)));
-
-    %add to result
-    analysis = strcat('region',int2str(i),'_c',int2str(channel1), ...
-        '_overlap_c',int2str(channel2));
-    value = table(overlap,'VariableNames',{analysis},'RowNames',{name});
-    result = [result,value];
 end
