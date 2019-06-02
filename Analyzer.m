@@ -44,6 +44,7 @@ for i = 1:size(filenames,2)
         result = [result,distribution(I,M,R,3,95,voxel,name)];
         result = [result,distribution(I,M,R,1,95,voxel,name)];
         result = [result,mandersregions(I,M,R,3,1,95,95,voxel,name)];
+        result = [result,vdratio(I,M,1,96,voxel,name)];
         
         %add the result to the sheet
         if isempty(sheet)

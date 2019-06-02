@@ -9,7 +9,7 @@ function result = brightness(I,M,channel,name)
 
 C = I(:,:,:,channel).*M;
 volume = sum(sum(sum(M)));
-average = sum(sum(sum(C)))/volume;
+average = sum(sum(sum(C)))/volume/2^16;
 analysis = strcat('whole_c',int2str(channel),'_average');
 result = table(average,'VariableNames',{analysis},'RowNames',{name});
 
