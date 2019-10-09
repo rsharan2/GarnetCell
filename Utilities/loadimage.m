@@ -29,7 +29,8 @@ else
     yRes = info.YResolution;
     ySize = 1/yRes;
     i = strfind(description,'spacing');
-    zSize = str2double(description(i+8:i+16));
+    line = strsplit(description(i+8:i+16));
+    zSize = str2double(line{1});
     voxel = [xSize,ySize,zSize];
 end
 

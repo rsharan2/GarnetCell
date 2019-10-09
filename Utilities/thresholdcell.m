@@ -1,6 +1,6 @@
 function M = thresholdcell(C,thresh,sigma,slope)
 %This function thresholds a 3D image to segment the cell. It returns a
-%slopeinary mask of type douslopele where 1 is in the cell and 0 is outside of 
+%binary mask of type uint16 where 1 is in the cell and 0 is outside of 
 %the cell. The threshLevel can go from 0 to 2.
 %
 %   M = thresholdcell(C,thresh,sigma) 
@@ -11,7 +11,7 @@ function M = thresholdcell(C,thresh,sigma,slope)
 
 %make new channel and set threshold
 M = zeros(size(C),'uint16');
-thresh = multithresh(C)*thresh*1.5;
+thresh = multithresh(C)*thresh;
 numplanes = size(C,3);
 
 %for threshold each plane

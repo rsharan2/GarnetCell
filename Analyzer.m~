@@ -47,10 +47,9 @@ for i = 1:size(filenames,2)
         result = [result,vdratio(I,M,1,96,voxel,name)];
         
         %Uncomment this line to save threshoded image
-        regionspath = strcat(path,'/regions_',name,'.tif');
-        saveregions(M,R,regionspath);
-        thresholdedpath = strcat(path,'/threholded_',name,'.tif');
-        savethresholded(I,M,95,95,95,voxel,thresholdedpath);
+        imagepath = strcat(path,'/thresholded_',name,'');
+        saveimage(I,M,R,3,1,95,95,imagepath);
+        
         
         %add the result to the sheet
         if isempty(sheet)
