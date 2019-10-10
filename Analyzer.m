@@ -50,7 +50,7 @@ for i = 1:size(filenames,2)
         regionspath = strcat(path,'/regions_',name,'.tif');
         saveregions(M,R,regionspath);
         thresholdedpath = strcat(path,'/threholded_',name,'.tif');
-        savethresholded(I,M,95,95,95,voxel,thresholdedpath);
+        savethresholded(I,M,R,1,2,95,95,voxel,thresholdedpath);
         
         %add the result to the sheet
         if isempty(sheet)
