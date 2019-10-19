@@ -41,16 +41,16 @@ for i = 1:size(filenames,2)
         
         %add analyses here
         result = [result,brightness(I,M,1,name)];
-        result = [result,distribution(I,M,R,3,95,voxel,name)];
+        result = [result,distribution(I,M,R,2,95,voxel,name)];
         result = [result,distribution(I,M,R,1,95,voxel,name)];
-        result = [result,mandersregions(I,M,R,3,1,95,95,voxel,name)];
+        result = [result,mandersregions(I,M,R,2,1,95,95,voxel,name)];
         result = [result,vdratio(I,M,1,96,voxel,name)];
         
         %Uncomment this line to save threshoded image
-        regionspath = strcat(path,'/regions_',name,'.tif');
-        saveregions(M,R,regionspath);
+        %regionspath = strcat(path,'/regions_',name,'.tif');
+        %saveregions(M,R,regionspath);
         thresholdedpath = strcat(path,'/threholded_',name,'.tif');
-        savethresholded(I,M,R,1,2,95,95,voxel,thresholdedpath);
+        savethresholdedfiltered(I,M,R,1,2,95,95,5,500,voxel,thresholdedpath);
         
         %add the result to the sheet
         if isempty(sheet)
