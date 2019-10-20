@@ -43,7 +43,7 @@ for i = 1:size(filenames,2)
         result = [result,brightness(I,M,1,name)];
         result = [result,distribution(I,M,R,2,95,voxel,name)];
         result = [result,distribution(I,M,R,1,95,voxel,name)];
-        result = [result,mandersregions(I,M,R,2,1,95,95,voxel,name)];
+        result = [result,mandersregionsfiltered(I,M,R,2,1,95,95,5,500,voxel,name)];
         result = [result,vdratio(I,M,1,96,voxel,name)];
         
         %Uncomment this line to save threshoded image

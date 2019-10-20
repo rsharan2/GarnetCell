@@ -18,7 +18,7 @@ C1 = uint16(C1>thresh);
 CC = bwconncomp(C1,6);
 S = regionprops3(CC, 'Volume');
 L = labelmatrix(CC);
-C1 = ismember(L, find([S.Volume] > minvolume & [S.Volume] < maxvolume));
+C1 = uint16(ismember(L, find([S.Volume] > minvolume & [S.Volume] < maxvolume)));
 
 %apply gaussian blur and threshold to channel 2
 C2 = I(:,:,:,channel2).*M;
@@ -30,7 +30,7 @@ C2 = uint16(C2>thresh);
 CC = bwconncomp(C2,6);
 S = regionprops3(CC, 'Volume');
 L = labelmatrix(CC);
-C2 = ismember(L, find([S.Volume] > minvolume & [S.Volume] < maxvolume));
+C2 = uint16(ismember(L, find([S.Volume] > minvolume & [S.Volume] < maxvolume)));
 
 %get overlap
 O = C1.*C2;
