@@ -1,4 +1,4 @@
-function thresh = getthresh(C,M,percentile)
+function thresh = getthresh(C,M,percentile,varargin)
 %gets a percentilecentile of the data
 %
 %   thresh = getthresh(C,M,percentile)
@@ -8,7 +8,13 @@ function thresh = getthresh(C,M,percentile)
 %Contact: colgan.william@gmail.com
 
 C = C.*M;
-if max(max(max(C))) ~= 0
+
+if ~isempty(varargin) && isequal(varargin{1},'adaptive')
+    if percentile > 1
+        percentile = double(percentile)/100;
+    end
+    thresh = adaptthresh(C,percentile);
+elseif max(max(max(C))) ~= 0
     [x,y,z] = size(C);
     v1 = sort(reshape(C,[x*y*z,1]));
     k = find(v1);
@@ -17,4 +23,5 @@ if max(max(max(C))) ~= 0
 else
     thresh = 1;
 end
+
 end

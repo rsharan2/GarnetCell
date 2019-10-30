@@ -11,8 +11,9 @@ function result = mandersregionsfiltered(I,M,R,channel1,channel2,percentile1,per
 %apply gaussian blur and threshold to channel 1
 C1 = I(:,:,:,channel1).*M;
 C1 = imgaussfilt(C1,.1/voxel(1));
-thresh = getthresh(C1,M,percentile1);
-C1 = uint16(C1>thresh);
+thresh = getthresh(C1,M,percentile1,'adaptive');
+C1 = uint16(imbinarize(C1,thresh));
+%C1 = uint16(C1>thresh);
 
 %filter by volume
 CC = bwconncomp(C1,6);
@@ -23,8 +24,9 @@ C1 = uint16(ismember(L, find([S.Volume] > minvolume & [S.Volume] < maxvolume)));
 %apply gaussian blur and threshold to channel 2
 C2 = I(:,:,:,channel2).*M;
 C2 = imgaussfilt(C2,.1/voxel(1));
-thresh = getthresh(C2,M,percentile2);
-C2 = uint16(C2>thresh);
+thresh = getthresh(C2,M,percentile2,'adaptive');
+C2 = uint16(imbinarize(C2,thresh));
+%C2 = uint16(C2>thresh);
 
 %filter by volume
 CC = bwconncomp(C2,6);
