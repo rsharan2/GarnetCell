@@ -11,8 +11,9 @@ function result = distribution(I,M,R,channel,percentile,voxel,name)
 %apply gaussian blur and threshold
 C = I(:,:,:,channel).*M;
 C = imgaussfilt(C,.1/voxel(1));
-thresh = getthresh(C,M,percentile,'adaptive');
-C = uint16(imbinarize(C,thresh));
+C = uint16(adaptive_threshold_image(C,M,percentile,'adaptive'));
+%thresh = getthresh(C,M,percentile,'adaptive');
+%C = uint16(imbinarize(C,thresh));
 %C = uint16(C>thresh);
 
 %fraction of cell which is signal

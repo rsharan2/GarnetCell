@@ -14,8 +14,10 @@ V = M.*V;
 %apply gaussian blur and threshold
 C = I(:,:,:,channel).*M;
 C = imgaussfilt(C,.1/voxel(1));
-thresh = getthresh(C,M,percentile,'adaptive');
-C = uint16(imbinarize(C,thresh));
+C = uint16(adaptive_threshold_image(C,M,percentile,'adaptive'));
+
+%thresh = getthresh(C,M,percentile,'adaptive');
+%C = uint16(imbinarize(C,thresh));
 %C = uint16(C>thresh);
 
 ratio = sum(sum(sum(C.*V)))/sum(sum(sum(I(:,:,:,channel).*D)));
