@@ -34,7 +34,7 @@ for i = 1:numplanes
 end
 SE = strel('cube',5);
 M = imerode(M,SE);
-M = bwareaopen(M,100000);
+M = bwareaopen(M,10000);
 M  = imdilate(M, SE);
 M = uint16(M);
 
