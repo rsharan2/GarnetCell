@@ -1,4 +1,4 @@
-function M = thresholdcell(C,thresh,sigma,slope)
+function M = thresholdcell(C,thresh,sigma,slope,max_cell_area)
 %This function thresholds a 3D image to segment the cell. It returns a
 %binary mask of type uint16 where 1 is in the cell and 0 is outside of 
 %the cell. The threshLevel can go from 0 to 2.
@@ -34,7 +34,7 @@ for i = 1:numplanes
 end
 SE = strel('cube',5);
 M = imerode(M,SE);
-M = bwareaopen(M,10000);
+M = bwareaopen(M,max_cell_area);
 M  = imdilate(M, SE);
 M = uint16(M);
 
